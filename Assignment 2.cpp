@@ -4,39 +4,48 @@
 
 using namespace std;
 
-struct staff 
+void printEntry (int staffChoice, string name)
 {
-    string name;
-    int staffProf;
-};
+    switch (staffChoice)
+    {
+        case 1:
+            cout << name << " is a Receptionist." << endl;
+            break;
+        case 2:
+            cout << name << " is an Administrator." << endl;
+            break;
+        case 3:
+            cout << name << " is a Nurse." << endl;
+            break;
+        case 4:
+            cout << name << " is a Doctor." << endl;
+            break;
+        default:
+        {
+            cout << "Wrong Entry!" << endl;
+        }
+    }
+}
 
 int main()
 {
-    int i = 0;
-    const string SENTINEL = "done";
+    string name;
+    string SENTINEL = "done";
+    int staffChoice;
     int count = 0;
-
-    staff* s = new staff[ i ];
-    while (s[ i ].name != SENTINEL)
+    while (name != SENTINEL && count <= 50)
     {
-        cout << "Please enter the staff name: ";
-        cin >> s[ i ].name;
-        cout << "Please enter the profession of " << s[ i ].name;
-        cin >> s[ i ].staffProf;
-       
-        count++;
-        i++;
-    }
-       
-    
+        cout << "Please enter the staff name, or enter 'done' to finish inputting: ";
+        getline(cin, name);
 
-    for (int i = 0; i < count; i++) {
-        cout << left << s[ i ].name << s[ i ].staffProf << endl;
+        if (name != SENTINEL && count <= 50)
+        {
+            cout << "Please enter the profession of " << name << ": ";
+            cin >> staffChoice;
+            printEntry(staffChoice, name);
+            cin.ignore();
+            count++;
+        }
     }
-
-  
-    
     return 0;
 }
-
-
